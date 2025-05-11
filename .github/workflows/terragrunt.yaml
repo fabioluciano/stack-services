@@ -17,6 +17,8 @@ env:
   CLOUDFLARE_R2_SECRET_KEY: ${{secrets.CLOUDFLARE_R2_SECRET_KEY}}
   CLOUDFLARE_R2_ENDPOINT: ${{secrets.CLOUDFLARE_R2_ENDPOINT}}
 
+  TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.terraform.d/plugin-cache
+
 jobs:
   checks:
     runs-on: ubuntu-latest
@@ -30,9 +32,20 @@ jobs:
     steps:
       - name: "Checkout"
         uses: actions/checkout@main
+        
+      - name: Create Terraform Plugin Cache Dir
+        run: mkdir -p $TF_PLUGIN_CACHE_DIR
+
+      - name: Terraform Plugin Cache
+        uses: actions/cache@v4.0.1
+        with:
+          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+          key: ${{ runner.os }}-terraform-plugin-cache-${{ hashFiles('**/.terraform.lock.hcl')
 
       - name: Plan
         uses: gruntwork-io/terragrunt-action@v2
+        env:
+          TF_PLUGIN_CACHE_DIR: /github/workspace/.terraform.d/plugin-cache
         with:
           tofu_version: ${{ env.tofu_version }}
           tg_version: ${{ env.tg_version }}
@@ -49,6 +62,8 @@ jobs:
 
       - name: Deploy
         uses: gruntwork-io/terragrunt-action@v2
+        env:
+          TF_PLUGIN_CACHE_DIR: /github/workspace/.terraform.d/plugin-cache
         with:
           tofu_version: ${{ env.tofu_version }}
           tg_version: ${{ env.tg_version }}
