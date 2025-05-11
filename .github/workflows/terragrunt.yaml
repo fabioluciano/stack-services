@@ -7,6 +7,13 @@ env:
   tg_version: "latest"
   working_dir: "."
 
+  HCP_CLIENT_ID: ${{secrets.HCP_CLIENT_ID}}
+  HCP_CLIENT_SECRET: ${{secrets.HCP_CLIENT_SECRET}}
+  HCP_VAULT_APP_NAME: ${{secrets.HCP_VAULT_APP_NAME}}
+  CLOUDFLARE_R2_ACCESS_KEY: ${{secrets.CLOUDFLARE_R2_ACCESS_KEY}}
+  CLOUDFLARE_R2_SECRET_KEY: ${{secrets.CLOUDFLARE_R2_SECRET_KEY}}
+  CLOUDFLARE_R2_ENDPOINT: ${{secrets.CLOUDFLARE_R2_ENDPOINT}}
+
 jobs:
   checks:
     runs-on: ubuntu-latest
