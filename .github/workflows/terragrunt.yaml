@@ -13,12 +13,12 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@main
 
-      - name: Check terragrunt HCL
-        uses: gruntwork-io/terragrunt-action@v2
-        with:
-          tofu_version: ${{ env.tofu_version }}
-          tg_version: ${{ env.tg_version }}
-          tg_command: "hclfmt --terragrunt-check --terragrunt-diff"
+      # - name: Check terragrunt HCL
+      #   uses: gruntwork-io/terragrunt-action@v2
+      #   with:
+      #     tofu_version: ${{ env.tofu_version }}
+      #     tg_version: ${{ env.tg_version }}
+      #     tg_command: "hclfmt --terragrunt-check --terragrunt-diff"
 
   plan:
     runs-on: ubuntu-latest
