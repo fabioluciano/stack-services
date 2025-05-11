@@ -29,7 +29,7 @@ jobs:
         run: mkdir -p $TF_PLUGIN_CACHE_DIR
 
       - name: Terraform Plugin Cache
-        uses: actions/cache@v4.0.1
+        uses: actions/cache@v4
         with:
           path: ${{ env.TF_PLUGIN_CACHE_DIR }}
           key: ${{ runner.os }}-terraform-plugin-cache-${{ hashFiles('**/.terraform.lock.hcl')}}
