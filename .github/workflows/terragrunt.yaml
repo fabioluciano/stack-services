@@ -1,6 +1,9 @@
 name: "Terragrunt GitHub Actions"
 on:
-  - pull_request
+  pull_request:
+  push:
+    branches:
+      - main
 
 env:
   tofu_version: "latest"
