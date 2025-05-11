@@ -40,6 +40,12 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@main
 
+      - name: Restore Terraform Plugin Cache
+        uses: actions/cache@v4.0.1
+        with:
+          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+          key: ${{ runner.os }}-terraform-plugin-cache-${{ hashFiles('**/.terraform.lock.hcl')}}
+
       - name: Plan
         uses: gruntwork-io/terragrunt-action@v2
         env:
@@ -50,6 +56,12 @@ jobs:
           tg_dir: ${{ env.working_dir }}
           tg_command: "run-all plan"
 
+      - name: Save Terraform Plugin Cache
+        uses: actions/cache@v4.0.1
+        with:
+          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+          key: ${{ runner.os }}-terraform-plugin-cache-${{ hashFiles('**/.terraform.lock.hcl')}}
+
   deploy:
     runs-on: ubuntu-latest
     needs: [plan]
@@ -57,6 +69,12 @@ jobs:
     steps:
       - name: "Checkout"
         uses: actions/checkout@main
+
+      - name: Restore Terraform Plugin Cache
+        uses: actions/cache@v4.0.1
+        with:
+          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+          key: ${{ runner.os }}-terraform-plugin-cache-${{ hashFiles('**/.terraform.lock.hcl')}}
 
       - name: Deploy
         uses: gruntwork-io/terragrunt-action@v2
@@ -67,3 +85,9 @@ jobs:
           tg_version: ${{ env.tg_version }}
           tg_dir: ${{ env.working_dir }}
           tg_command: "run-all apply"
+
+      - name: Save Terraform Plugin Cache
+        uses: actions/cache@v4.0.1
+        with:
+          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+          key: ${{ runner.os }}-terraform-plugin-cache-${{ hashFiles('**/.terraform.lock.hcl')}}
