@@ -31,14 +31,5 @@ inputs = {
 
   enable_github_pages = true
 
-  custom_dns_records = [
-    {
-      type = "CNAME"
-      name = "k8s.fabioluciano.dev"
-      value = "fabioluciano.github.io"
-      proxied = true
-    },
-  ]
-
   github_pages_dns_records    = include.root.inputs.default_github_pages_dns_records
 }
