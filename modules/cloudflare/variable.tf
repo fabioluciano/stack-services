@@ -25,10 +25,12 @@ variable "github_pages_dns_records" {
 variable "google_workspace_mx_records" {
   description = "Google Workspace MX records"
   type = list(object({
-    record_type = string
-    value       = string
-    priority    = number
+    record_type = optional(string, null)
+    value       = optional(string, null)
+    priority    = optional(number, null)
   }))
+
+  default = []
 
   validation {
     condition = alltrue([
