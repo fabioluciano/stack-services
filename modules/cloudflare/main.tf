@@ -2,16 +2,12 @@ data "cloudflare_zones" "domain_zone" {
   name = var.domain_name
 }
 
-data "cloudflare_dns_records" "domain_dns_records" {
-  zone_id = one(data.cloudflare_zones.domain_zone.result).id
-}
-
 locals {
   github_records_to_process = var.enable_github_pages ? [
     for r_gh in var.github_pages_dns_records : {
       key_string : "${r_gh.record_type}__${var.domain_name}__${r_gh.value}",
       record_type : r_gh.record_type,
-      proxied : true,
+      proxied : false,
       content_val : r_gh.value,
       priority_val : null,
       record_actual_name : var.domain_name
