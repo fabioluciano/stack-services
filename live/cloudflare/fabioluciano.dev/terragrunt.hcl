@@ -50,6 +50,7 @@ inputs = {
       name = "blog.fabioluciano.dev"
       value = "162.159.152.4"
       proxied = true
+    }
   ]
 
   github_pages_dns_records    = include.root.inputs.default_github_pages_dns_records
