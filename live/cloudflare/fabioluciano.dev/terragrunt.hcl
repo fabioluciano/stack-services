@@ -39,6 +39,17 @@ inputs = {
       value = "fabioluciano.github.io"
       proxied = true
     },
+    {
+      type = "A"
+      name = "blog.fabioluciano.dev"
+      value = "162.159.153.4"
+      proxied = true
+    },
+    {
+      type = "A"
+      name = "blog.fabioluciano.dev"
+      value = "162.159.152.4"
+      proxied = true
   ]
 
   github_pages_dns_records    = include.root.inputs.default_github_pages_dns_records
