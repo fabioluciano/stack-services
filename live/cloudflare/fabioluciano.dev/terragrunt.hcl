@@ -43,13 +43,13 @@ inputs = {
       type = "A"
       name = "blog.fabioluciano.dev"
       value = "162.159.153.4"
-      proxied = true
+      proxied = false
     },
     {
       type = "A"
       name = "blog.fabioluciano.dev"
       value = "162.159.152.4"
-      proxied = true
+      proxied = false
     }
   ]
 
