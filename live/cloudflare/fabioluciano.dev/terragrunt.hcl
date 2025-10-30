@@ -50,6 +50,12 @@ inputs = {
       name = "blog.fabioluciano.dev"
       value = "162.159.152.4"
       proxied = false
+    },
+    {
+      type = "A"
+      name = "log.fabioluciano.dev"
+      value = "76.76.21.21"
+      proxied = false
     }
   ]
 
