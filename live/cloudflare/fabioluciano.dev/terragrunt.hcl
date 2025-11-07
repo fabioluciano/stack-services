@@ -7,25 +7,14 @@ include "root" {
   expose = true
 }
 
-dependency "vault" {
-  config_path = "${path_relative_from_include()}/live/vault"
-
-  mock_outputs = {
-    secrets = {
-      cloudflare_email            = "test@test.com"
-      cloudflare_api_token        = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    }
-  }
-}
 
 terraform {
   source = "../../../modules/cloudflare"
 }
 
 inputs = {
-  cloudflare_email = dependency.vault.outputs.secrets["cloudflare_email"]
-  cloudflare_api_key = dependency.vault.outputs.secrets["cloudflare_api_token"]
-  teste = dependency.vault.outputs.secrets
+  cloudflare_email = get_env("CLOUDFLARE_MAIL")
+  cloudflare_api_token = get_env("CLOUDFLARE_API_TOKEN")
 
   domain_name = local.dirname_domainname
 
