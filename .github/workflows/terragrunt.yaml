@@ -54,7 +54,7 @@ jobs:
           tofu_version: ${{ env.tofu_version }}
           tg_version: ${{ env.tg_version }}
           tg_dir: ${{ env.working_dir }}
-          tg_command: "run-all plan"
+          tg_command: "stack run plan"
 
       - name: Save Terraform Plugin Cache
         uses: actions/cache@v4
@@ -84,7 +84,7 @@ jobs:
           tofu_version: ${{ env.tofu_version }}
           tg_version: ${{ env.tg_version }}
           tg_dir: ${{ env.working_dir }}
-          tg_command: "run-all apply"
+          tg_command: "stack run apply"
 
       - name: Save Terraform Plugin Cache
         uses: actions/cache@v4
