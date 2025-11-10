@@ -29,17 +29,11 @@ inputs = {
       proxied = true
     },
     {
-      type = "A"
-      name = "blog.fabioluciano.dev"
-      value = "162.159.153.4"
+      type = "CNAME"
+      name = "log"
+      value = "hashnode.network"
       proxied = false
     },
-    {
-      type = "A"
-      name = "blog.fabioluciano.dev"
-      value = "162.159.152.4"
-      proxied = false
-    }
   ]
 
   github_pages_dns_records    = include.root.inputs.default_github_pages_dns_records
