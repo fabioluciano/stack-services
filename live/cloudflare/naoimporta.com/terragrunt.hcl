@@ -9,7 +9,10 @@ terraform {
 inputs = {
   domain_name = basename(get_terragrunt_dir())
 
-  enable_github_pages = true
-  enable_fastmail     = true
-  fastmail_dav_id     = "d5790631"
+  enable_fastmail = true
+  fastmail_dav_id = "d5787015"
+
+  redirect_rules = [
+    { from = "naoimporta.com", to = "https://fabioluciano.com" },
+  ]
 }
