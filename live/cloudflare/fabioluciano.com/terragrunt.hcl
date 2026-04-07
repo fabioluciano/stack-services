@@ -19,6 +19,6 @@ inputs = {
 
   custom_dns_records = [
     { type = "CNAME", name = "devex.book", value = "domains.gumroad.com" },
-    { type = "CNAME", name = "resume",     value = "fabioluciano.github.io" },
+    { type = "CNAME", name = "resume", value = "fabioluciano.github.io" },
   ]
 }
